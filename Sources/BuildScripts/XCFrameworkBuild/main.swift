@@ -24,7 +24,6 @@ do {
     try BuildBluray().buildALL()
     
     // ffmpeg
-    try BuildUavs3d().buildALL()
     try BuildDovi().buildALL()
     try BuildVulkan().buildALL()
     try BuildShaderc().buildALL()
@@ -44,7 +43,7 @@ do {
 
 
 enum Library: String, CaseIterable {
-    case libmpv, FFmpeg, libshaderc, vulkan, lcms2, libdovi, openssl, libunibreak, libfreetype, libfribidi, libharfbuzz, libass, libsmbclient, libplacebo, libdav1d, gmp, nettle, gnutls, libuchardet, libbluray, libluajit, libuavs3d
+    case libmpv, FFmpeg, libshaderc, vulkan, lcms2, libdovi, openssl, libunibreak, libfreetype, libfribidi, libharfbuzz, libass, libsmbclient, libplacebo, libdav1d, gmp, nettle, gnutls, libuchardet, libbluray, libluajit
     var version: String {
         switch self {
         case .libmpv:
@@ -89,8 +88,6 @@ enum Library: String, CaseIterable {
             return "1.3.4"
         case .libluajit:
             return "2.1.0"
-        case .libuavs3d:
-            return "1.2.1"
         }
     }
 
@@ -138,8 +135,6 @@ enum Library: String, CaseIterable {
             return "https://github.com/mpvkit/libbluray-build/releases/download/\(self.version)/libbluray-all.zip"
         case .libluajit:
             return "https://github.com/mpvkit/libluajit-build/releases/download/\(self.version)/libluajit-all.zip"
-        case .libuavs3d:
-            return "https://github.com/mpvkit/libuavs3d-build/releases/download/\(self.version)/libuavs3d-all.zip"
         }
     }
 
@@ -150,7 +145,7 @@ enum Library: String, CaseIterable {
             return [
                 .target(
                     name: "Libmpv",
-                    url: "https://github.com/mpvkit/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libmpv.xcframework.zip",
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libmpv.xcframework.zip",
                     checksum: ""
                 ),
             ]
@@ -158,37 +153,37 @@ enum Library: String, CaseIterable {
             return  [
                 .target(
                     name: "Libavcodec",
-                    url: "https://github.com/mpvkit/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavcodec.xcframework.zip",
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavcodec.xcframework.zip",
                     checksum: ""
                 ),
                 .target(
                     name: "Libavdevice",
-                    url: "https://github.com/mpvkit/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavdevice.xcframework.zip",
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavdevice.xcframework.zip",
                     checksum: ""
                 ),
                 .target(
                     name: "Libavformat",
-                    url: "https://github.com/mpvkit/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavformat.xcframework.zip",
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavformat.xcframework.zip",
                     checksum: ""
                 ),
                 .target(
                     name: "Libavfilter",
-                    url: "https://github.com/mpvkit/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavfilter.xcframework.zip",
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavfilter.xcframework.zip",
                     checksum: ""
                 ),
                 .target(
                     name: "Libavutil",
-                    url: "https://github.com/mpvkit/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavutil.xcframework.zip",
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libavutil.xcframework.zip",
                     checksum: ""
                 ),
                 .target(
                     name: "Libswresample",
-                    url: "https://github.com/mpvkit/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libswresample.xcframework.zip",
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libswresample.xcframework.zip",
                     checksum: ""
                 ),
                 .target(
                     name: "Libswscale",
-                    url: "https://github.com/mpvkit/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libswscale.xcframework.zip",
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libswscale.xcframework.zip",
                     checksum: ""
                 ),
             ]
@@ -352,14 +347,6 @@ enum Library: String, CaseIterable {
                     name: "Libluajit",
                     url: "https://github.com/mpvkit/libluajit-build/releases/download/\(self.version)/Libluajit.xcframework.zip",
                     checksum: "https://github.com/mpvkit/libluajit-build/releases/download/\(self.version)/Libluajit.xcframework.checksum.txt"
-                ),
-            ]
-        case .libuavs3d:
-            return  [
-                .target(
-                    name: "Libuavs3d",
-                    url: "https://github.com/mpvkit/libuavs3d-build/releases/download/\(self.version)/Libuavs3d.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libuavs3d-build/releases/download/\(self.version)/Libuavs3d.xcframework.checksum.txt"
                 ),
             ]
         }
@@ -605,7 +592,7 @@ private class BuildFFMPEG: BaseBuild {
         //        if platform == .isimulator || platform == .tvsimulator {
         //            arguments.append("--assert-level=1")
         //        }
-        var dependencyLibrary = [Library.gmp, .gnutls, .libfreetype, .libharfbuzz, .libfribidi, .libass, .vulkan, .libshaderc, .lcms2, .libplacebo, .libdav1d, .libuavs3d]
+        var dependencyLibrary = [Library.gmp, .gnutls, .libfreetype, .libharfbuzz, .libfribidi, .libass, .vulkan, .libshaderc, .lcms2, .libplacebo, .libdav1d]
         if BaseBuild.options.enableGPL {
             dependencyLibrary += [.libsmbclient]
         }
@@ -615,7 +602,7 @@ private class BuildFFMPEG: BaseBuild {
                 arguments.append("--enable-\(library.rawValue)")
                 if library == .libsmbclient {
                     arguments.append("--enable-protocol=\(library.rawValue)")
-                } else if library == .libdav1d || library == .libuavs3d {
+                } else if library == .libdav1d {
                     arguments.append("--enable-decoder=\(library.rawValue)")
                 } else if library == .libass {
                     arguments.append("--enable-filter=ass")
@@ -860,12 +847,6 @@ private class BuildDav1d: ZipBaseBuild {
 private class BuildLittleCms: ZipBaseBuild {
     init() {
         super.init(library: .lcms2)
-    }
-}
-
-private class BuildUavs3d: ZipBaseBuild {
-    init() throws {
-        super.init(library: .libuavs3d)
     }
 }
 
