@@ -92,7 +92,8 @@ class ArgumentOptions {
 
 class BaseBuild {
     static let defaultPath = "/Library/Frameworks/Python.framework/Versions/Current/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    static var platforms = PlatformType.allCases
+    // visionOS (xros/xrsimulator) intentionally excluded — not a supported target for this fork
+    static var platforms = PlatformType.allCases.filter { $0 != .xros && $0 != .xrsimulator }
     static var options = ArgumentOptions()
     static let splitPlatformGroups = [
         PlatformType.macos.rawValue: [PlatformType.macos, PlatformType.maccatalyst],
@@ -434,9 +435,10 @@ class BaseBuild {
         return frameworkDir.path
     }
 
-    // Fix shallow bundles for Xcode 26, only for macOS frameworks
+    // Fix shallow bundles for Xcode 26 — required for macOS and macCatalyst,
+    // which both use non-shallow (Versions/A/...) framework layout.
     func fixShallowBundles(framework: String, platform: PlatformType, frameworkDir: URL) throws {
-        guard platform == .macos else { return }
+        guard platform == .macos || platform == .maccatalyst else { return }
 
         let infoPlistPath = frameworkDir + "Info.plist"
         let versionsPath = frameworkDir + "Versions"
@@ -1156,12 +1158,7 @@ enum PlatformType: String, CaseIterable {
 
     func ldFlags(arch: ArchType) -> [String] {
         // ldFlags的关键参数要跟cFlags保持一致，不然会在ld的时候不通过。
-        var flags = ["-lc++", "-arch", arch.rawValue, "-isysroot", isysroot, "-target", deploymentTarget(arch), osVersionMin]
-        // maccatalyst的vulkan库需要加载UIKit框架
-        if self == .maccatalyst {
-            flags += ["-iframework", "\(isysroot)/System/iOSSupport/System/Library/Frameworks"]
-        }
-        return flags
+        return ["-lc++", "-arch", arch.rawValue, "-isysroot", isysroot, "-target", deploymentTarget(arch), osVersionMin]
     }
 
 

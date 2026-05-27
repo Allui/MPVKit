@@ -8,7 +8,7 @@ help:
 	@echo "Targets:"
 	@echo "  build [arguments]     Build the project for iOS and macOS"
 	@echo "                        Arguments:"
-	@echo "                            platform=ios,macos        Only build specified platform (ios,macos,tvos,tvsimulator,isimulator,maccatalyst,xros,xrsimulator)"
+	@echo "                            platform=ios,macos        Only build specified platform (ios,macos,tvos,tvsimulator,isimulator,maccatalyst)"
 	@echo "                            enable-gpl                Complile to GPL version"
 	@echo "  clean                 Clean the build artifacts"
 	@echo "  help                  Display this help message"

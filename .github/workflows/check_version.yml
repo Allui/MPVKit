@@ -148,12 +148,8 @@ jobs:
         library:
           - name: libass
             repository: "mpvkit/libass-build"
-          - name: vulkan
-            repository: "mpvkit/moltenvk-build"
           - name: libplacebo
             repository: "mpvkit/libplacebo-build"
-          - name: libshaderc
-            repository: "mpvkit/libshaderc-build"
           - name: libdovi
             repository: "mpvkit/libdovi-build"
     runs-on: ubuntu-latest

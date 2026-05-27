@@ -36,7 +36,7 @@ https://github.com/mpvkit/MPVKit.git
 
 ```bash
 make build
-# specified platforms (ios,macos,tvos,tvsimulator,isimulator,maccatalyst,xros,xrsimulator)
+# specified platforms (ios,macos,tvos,tvsimulator,isimulator,maccatalyst)
 make build platform=ios,macos
 # build GPL version
 make build enable-gpl
@@ -101,16 +101,10 @@ If you want the demo app to use the local build version, you need to modify `Pac
 
 ## Related Projects
 
-* [moltenvk-build](https://github.com/mpvkit/moltenvk-build)
 * [libplacebo-build](https://github.com/mpvkit/libplacebo-build)
 * [libdovi-build](https://github.com/mpvkit/libdovi-build)
-* [libshaderc-build](https://github.com/mpvkit/libshaderc-build)
-* [libluajit-build](https://github.com/mpvkit/libluajit-build)
 * [libass-build](https://github.com/mpvkit/libass-build)
-* [libbluray-build](https://github.com/mpvkit/libbluray-build)
 * [libsmbclient-build](https://github.com/mpvkit/libsmbclient-build)
-* [gnutls-build](https://github.com/mpvkit/gnutls-build)
-* [openssl-build](https://github.com/mpvkit/openssl-build)
 
 ## Donation
 

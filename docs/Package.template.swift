@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "MPVKit",
-    platforms: [.macOS(.v11), .iOS(.v13), .tvOS(.v14), .visionOS(.v1)],
+    platforms: [.macOS(.v11), .iOS(.v13), .tvOS(.v14)],
     products: [
         .library(
             name: "MPVKit",
@@ -19,8 +19,7 @@ let package = Package(
         .target(
             name: "_MPVKit",
             dependencies: [
-                "Libmpv", "_FFmpeg", "Libuchardet", "Libbluray",
-                .target(name: "Libluajit", condition: .when(platforms: [.macOS])),
+                "Libmpv", "_FFmpeg", "Libuchardet",
             ],
             path: "Sources/_MPVKit",
             linkerSettings: [
@@ -32,9 +31,9 @@ let package = Package(
             name: "_FFmpeg",
             dependencies: [
                 "Libavcodec", "Libavdevice", "Libavfilter", "Libavformat", "Libavutil", "Libswresample", "Libswscale",
-                "Libssl", "Libcrypto", "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
-                "MoltenVK", "Libshaderc_combined", "lcms2", "Libplacebo", "Libdovi", "Libunibreak",
-                "gmp", "nettle", "hogweed", "gnutls", "Libdav1d"
+                "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
+                "Libplacebo", "Libdovi", "Libunibreak",
+                "Libdav1d"
             ],
             path: "Sources/_FFmpeg",
             linkerSettings: [
@@ -56,8 +55,7 @@ let package = Package(
         .target(
             name: "_MPVKit-GPL",
             dependencies: [
-                "Libmpv-GPL", "_FFmpeg-GPL", "Libuchardet", "Libbluray",
-                .target(name: "Libluajit", condition: .when(platforms: [.macOS])),
+                "Libmpv-GPL", "_FFmpeg-GPL", "Libuchardet",
             ],
             path: "Sources/_MPVKit-GPL",
             linkerSettings: [
@@ -69,9 +67,9 @@ let package = Package(
             name: "_FFmpeg-GPL",
             dependencies: [
                 "Libavcodec-GPL", "Libavdevice-GPL", "Libavfilter-GPL", "Libavformat-GPL", "Libavutil-GPL", "Libswresample-GPL", "Libswscale-GPL",
-                "Libssl", "Libcrypto", "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
-                "MoltenVK", "Libshaderc_combined", "lcms2", "Libplacebo", "Libdovi", "Libunibreak",
-                "Libsmbclient", "gmp", "nettle", "hogweed", "gnutls", "Libdav1d"
+                "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
+                "Libplacebo", "Libdovi", "Libunibreak",
+                "Libsmbclient", "Libdav1d"
             ],
             path: "Sources/_FFmpeg-GPL",
             linkerSettings: [

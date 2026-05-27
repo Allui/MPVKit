@@ -36,7 +36,6 @@ jobs:
             mpvVersion = re.search(r'(case .libmpv[^"]+?)"(.+?)"', content).group(2)
             ffmpegVersion = re.search(r'(case .FFmpeg[^"]+?)"(.+?)"', content).group(2)
             libplaceboVersion = re.search(r'(case .libplacebo[^"]+?)"(.+?)"', content).group(2)
-            vulkanVersion = re.search(r'(case .vulkan[^"]+?)"(.+?)"', content).group(2)
 
             print(f'mpv version: {mpvVersion}')
             print(f'ffmpeg version: {ffmpegVersion}')
@@ -50,7 +49,6 @@ jobs:
               * mpv version: {mpvVersion} ([changelog](https://github.com/mpv-player/mpv/releases/tag/{mpvVersion}))
               * ffmpeg version: {ffmpegVersion} ([changelog](https://github.com/FFmpeg/FFmpeg/blob/{ffmpegVersion}/Changelog))
               * placebo version: v{libplaceboVersion}
-              * MoltenVK version: v{vulkanVersion}
               ''')
 
 
@@ -60,13 +58,9 @@ jobs:
           brew install automake
           brew install libtool
           python -m pip install meson==1.4.2
+          python -m pip install jinja2
           brew install ninja
           brew install rename
-
-      - name: Setup Xcode to support visionOS
-        run: |
-          sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
-          xcodebuild -showsdks
 
       - name: Build GPL version
         run: |
@@ -79,11 +73,14 @@ jobs:
 
       - name: Clean GPL build files
         run: |
-          # remove libbluray, same as LGPL version
-          rm -rf ./dist/release/libbluray*.zip 
-          rm -rf ./dist/release/Libbluray*.zip 
-          rm -rf ./dist/release/Libbluray*.txt
-          
+          # Libplacebo is LGPL itself and its binary doesn't depend on the
+          # enable-gpl flag; the same artifact serves both consumers. Drop the
+          # renamed -GPL copy so we don't ship a redundant ~3MB zip.
+          rm -f ./dist/release/Libplacebo-GPL.xcframework.zip
+          rm -f ./dist/release/Libplacebo-GPL.xcframework.checksum.txt
+          rm -rf ./dist/libplacebo*
+          rm -rf ./dist/release/libplacebo
+
           rm -rf ./dist/FFmpeg*
           rm -rf ./dist/release/FFmpeg
           rm -rf ./dist/libmpv*

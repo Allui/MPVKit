@@ -40,7 +40,6 @@ jobs:
             mpvVersion = re.search(r'(case .libmpv[^"]+?)"(.+?)"', content).group(2)
             ffmpegVersion = re.search(r'(case .FFmpeg[^"]+?)"(.+?)"', content).group(2)
             libplaceboVersion = re.search(r'(case .libplacebo[^"]+?)"(.+?)"', content).group(2)
-            vulkanVersion = re.search(r'(case .vulkan[^"]+?)"(.+?)"', content).group(2)
 
             print(f'mpv version: {mpvVersion}')
             print(f'ffmpeg version: {ffmpegVersion}')
@@ -54,7 +53,6 @@ jobs:
               * mpv version: {mpvVersion} ([changelog](https://github.com/mpv-player/mpv/releases/tag/{mpvVersion}))
               * ffmpeg version: {ffmpegVersion} ([changelog](https://github.com/FFmpeg/FFmpeg/blob/{ffmpegVersion}/Changelog))
               * placebo version: v{libplaceboVersion}
-              * MoltenVK version: v{vulkanVersion}
               ''')
 
 
@@ -64,12 +62,13 @@ jobs:
           brew install automake
           brew install libtool
           python -m pip install meson==1.4.2
+          python -m pip install jinja2
           brew install ninja
           brew install rename
 
       - name: Build GPL version
         run: |
-          make build enable-gpl version=${{ env.RELEASE_VERSION }} platform=maccatalyst,xros,ios,macos
+          make build enable-gpl version=${{ env.RELEASE_VERSION }} platform=maccatalyst,ios,macos
 
           cd ./dist/release
           rename 's/-all\.zip/-GPL-all\.zip/' *-all.zip
