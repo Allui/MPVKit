@@ -723,37 +723,17 @@ class BaseBuild {
         }
 
         var dependencyTargetContent = ""
-        if self is ZipBaseBuild {
-            for target in library.targets {
-                let tmpChecksum = FileManager.default.temporaryDirectory + "\(library.rawValue)_checksum.txt"
-                if FileManager.default.fileExists(atPath: tmpChecksum.path) {
-                    try? FileManager.default.removeItem(at: tmpChecksum)
-                }
-                try! Utility.launch(path: "wget", arguments: ["-q", "-O", tmpChecksum.path, target.checksum], currentDirectoryURL: FileManager.default.temporaryDirectory)
-                let checksum = try String(contentsOf: tmpChecksum, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
-                dependencyTargetContent += """
-                
-                        .binaryTarget(
-                            name: "\(target.name)",
-                            url: "\(target.url)",
-                            checksum: "\(checksum)"
-                        ),
-                """
-                try? FileManager.default.removeItem(at: tmpChecksum)
-            }
-        } else {
-            for target in library.targets {
-                let checksumFile = releaseDirPath + [target.name + ".xcframework.checksum.txt"]
-                let checksum = try String(contentsOf: checksumFile, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
-                dependencyTargetContent += """
+        for target in library.targets {
+            let checksumFile = releaseDirPath + [target.name + ".xcframework.checksum.txt"]
+            let checksum = try String(contentsOf: checksumFile, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
+            dependencyTargetContent += """
 
-                        .binaryTarget(
-                            name: "\(target.name)",
-                            url: "\(target.url)",
-                            checksum: "\(checksum)"
-                        ),
-                """
-            }
+                    .binaryTarget(
+                        name: "\(target.name)",
+                        url: "\(target.url)",
+                        checksum: "\(checksum)"
+                    ),
+            """
         }
 
         if dependencyTargetContent.isEmpty {
@@ -948,6 +928,8 @@ class ZipBaseBuild : BaseBuild {
             }
         }
 
+        try createXCFramework()
+        try packageRelease()
         try afterBuild()
     }
 

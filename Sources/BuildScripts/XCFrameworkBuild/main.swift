@@ -135,40 +135,40 @@ enum Library: String, CaseIterable {
             return  [
                 .target(
                     name: "Libass",
-                    url: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libass.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libass.xcframework.checksum.txt"
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libass.xcframework.zip",
+                    checksum: ""
                 ),
             ]
         case .libunibreak:
             return  [
                 .target(
                     name: "Libunibreak",
-                    url: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libunibreak.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libunibreak.xcframework.checksum.txt"
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libunibreak.xcframework.zip",
+                    checksum: ""
                 ),
             ]
         case .libfreetype:
             return  [
                 .target(
                     name: "Libfreetype",
-                    url: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libfreetype.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libfreetype.xcframework.checksum.txt"
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libfreetype.xcframework.zip",
+                    checksum: ""
                 ),
             ]
         case .libfribidi:
             return  [
                 .target(
                     name: "Libfribidi",
-                    url: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libfribidi.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libfribidi.xcframework.checksum.txt"
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libfribidi.xcframework.zip",
+                    checksum: ""
                 ),
             ]
         case .libharfbuzz:
             return  [
                 .target(
                     name: "Libharfbuzz",
-                    url: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libharfbuzz.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libass-build/releases/download/\(self.version)/Libharfbuzz.xcframework.checksum.txt"
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libharfbuzz.xcframework.zip",
+                    checksum: ""
                 ),
             ]
         case .libplacebo:
@@ -183,24 +183,24 @@ enum Library: String, CaseIterable {
             return  [
                 .target(
                     name: "Libdav1d",
-                    url: "https://github.com/mpvkit/libdav1d-build/releases/download/\(self.version)/Libdav1d.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libdav1d-build/releases/download/\(self.version)/Libdav1d.xcframework.checksum.txt"
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libdav1d.xcframework.zip",
+                    checksum: ""
                 ),
             ]
         case .libdovi:
             return  [
                 .target(
                     name: "Libdovi",
-                    url: "https://github.com/mpvkit/libdovi-build/releases/download/\(self.version)/Libdovi.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libdovi-build/releases/download/\(self.version)/Libdovi.xcframework.checksum.txt"
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libdovi.xcframework.zip",
+                    checksum: ""
                 ),
             ]
         case .libuchardet:
             return  [
                 .target(
                     name: "Libuchardet",
-                    url: "https://github.com/mpvkit/libuchardet-build/releases/download/\(self.version)/Libuchardet.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libuchardet-build/releases/download/\(self.version)/Libuchardet.xcframework.checksum.txt"
+                    url: "https://github.com/Allui/MPVKit/releases/download/\(BaseBuild.options.releaseVersion)/Libuchardet.xcframework.zip",
+                    checksum: ""
                 ),
             ]
         }
@@ -224,6 +224,10 @@ private class BuildMPV: BaseBuild {
             "-Diconv=enabled",
             "-Duchardet=enabled",
             "-Dvulkan=disabled",
+            "-Dlcms2=disabled",
+            "-Dlibarchive=disabled",
+            "-Dcdda=disabled",
+            "-Ddvdnav=disabled",
 
             "-Djavascript=disabled",
             "-Dzimg=disabled",
@@ -236,6 +240,7 @@ private class BuildMPV: BaseBuild {
         if !(platform == .macos && arch.executable) {
             array.append("-Dcplayer=false")
         }
+        array.append("-Dvideotoolbox-pl=disabled")
         if platform == .macos {
             array.append("-Dswift-flags=-sdk \(platform.isysroot) -target \(platform.deploymentTarget(arch))")
             array.append("-Dcocoa=enabled")
@@ -243,15 +248,13 @@ private class BuildMPV: BaseBuild {
             array.append("-Davfoundation=enabled")
             array.append("-Dgl-cocoa=enabled")
             array.append("-Dvideotoolbox-gl=enabled")
-            array.append("-Dvideotoolbox-pl=enabled")
             array.append("-Dlua=disabled")
         } else {
-            array.append("-Dvideotoolbox-gl=disabled")
-            array.append("-Dvideotoolbox-pl=enabled")
             array.append("-Dswift-build=disabled")
             array.append("-Daudiounit=enabled")
             array.append("-Davfoundation=disabled")
             array.append("-Dlua=disabled")
+            array.append("-Dvideotoolbox-gl=disabled")
             if platform == .maccatalyst {
                 array.append("-Dcocoa=disabled")
                 array.append("-Dcoreaudio=disabled")
