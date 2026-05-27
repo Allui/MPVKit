@@ -64,13 +64,7 @@ jobs:
           python -m pip install meson==1.4.2
           python -m pip install jinja2
           brew install ninja
-          brew install rename
 
-      - name: Build GPL version
+      - name: Build
         run: |
-          make build enable-gpl version=${{ env.RELEASE_VERSION }} platform=maccatalyst,ios,macos
-
-          cd ./dist/release
-          rename 's/-all\.zip/-GPL-all\.zip/' *-all.zip
-          rename 's/\.xcframework\.zip/-GPL\.xcframework\.zip/' *.xcframework.zip
-          rename 's/\.xcframework\.checksum\.txt/-GPL\.xcframework\.checksum\.txt/' *.xcframework.checksum.txt
+          make build version=${{ env.RELEASE_VERSION }} platform=maccatalyst,ios,macos

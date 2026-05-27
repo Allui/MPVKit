@@ -33,7 +33,6 @@ class ArgumentOptions {
     private let arguments: [String]
     var enableDebug: Bool = false
     var enableSplitPlatform: Bool = false
-    var enableGPL: Bool = false
     var platforms : [PlatformType] = []
     var releaseVersion: String = "0.0.0"
 
@@ -55,8 +54,6 @@ class ArgumentOptions {
             switch argument {
             case "enable-debug":
                 options.enableDebug = true
-            case "enable-gpl":
-                options.enableGPL = true
             case "enable-split-platform":
                 options.enableSplitPlatform = true
             default:

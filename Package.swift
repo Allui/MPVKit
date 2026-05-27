@@ -10,10 +10,6 @@ let package = Package(
             name: "MPVKit",
             targets: ["_MPVKit"]
         ),
-        .library(
-            name: "MPVKit-GPL",
-            targets: ["_MPVKit-GPL"]
-        ),
     ],
     targets: [
         .target(
@@ -52,83 +48,7 @@ let package = Package(
                 .linkedLibrary("c++"),
             ]
         ),
-        .target(
-            name: "_MPVKit-GPL",
-            dependencies: [
-                "Libmpv-GPL", "_FFmpeg-GPL", "Libuchardet",
-            ],
-            path: "Sources/_MPVKit-GPL",
-            linkerSettings: [
-                .linkedFramework("AVFoundation"),
-                .linkedFramework("CoreAudio"),
-            ]
-        ),
-        .target(
-            name: "_FFmpeg-GPL",
-            dependencies: [
-                "Libavcodec-GPL", "Libavdevice-GPL", "Libavfilter-GPL", "Libavformat-GPL", "Libavutil-GPL", "Libswresample-GPL", "Libswscale-GPL",
-                "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
-                "Libplacebo", "Libdovi", "Libunibreak",
-                "Libsmbclient", "Libdav1d"
-            ],
-            path: "Sources/_FFmpeg-GPL",
-            linkerSettings: [
-                .linkedFramework("AudioToolbox"),
-                .linkedFramework("CoreVideo"),
-                .linkedFramework("CoreFoundation"),
-                .linkedFramework("CoreMedia"),
-                .linkedFramework("Metal"),
-                .linkedFramework("VideoToolbox"),
-                .linkedLibrary("bz2"),
-                .linkedLibrary("iconv"),
-                .linkedLibrary("expat"),
-                .linkedLibrary("resolv"),
-                .linkedLibrary("xml2"),
-                .linkedLibrary("z"),
-                .linkedLibrary("c++"),
-            ]
-        ),
 
-        .binaryTarget(
-            name: "Libmpv-GPL",
-            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libmpv-GPL.xcframework.zip",
-            checksum: "e429f287e029e8e78f0504edf911291ed07e9c04c925b5ac5121f7488647e890"
-        ),
-        .binaryTarget(
-            name: "Libavcodec-GPL",
-            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavcodec-GPL.xcframework.zip",
-            checksum: "bdd640dcfef6c6b701e2edf6c5d916c7e677ab824bacd7e4c10c96474bc3518f"
-        ),
-        .binaryTarget(
-            name: "Libavdevice-GPL",
-            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavdevice-GPL.xcframework.zip",
-            checksum: "7cd3f1ec142c32db9e80f64f4ebbe5f0d0074dd660f35a805f5520833fb3ece7"
-        ),
-        .binaryTarget(
-            name: "Libavformat-GPL",
-            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavformat-GPL.xcframework.zip",
-            checksum: "49f87c510bdb3d6b9b00c8277c80f42cb40ff953178a59132e32d659a21e385b"
-        ),
-        .binaryTarget(
-            name: "Libavfilter-GPL",
-            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavfilter-GPL.xcframework.zip",
-            checksum: "bcb0de8c30d53167f17a73a5c1b70916723a1ab3bac8b36b7b56f87b5c70d998"
-        ),
-        .binaryTarget(
-            name: "Libavutil-GPL",
-            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavutil-GPL.xcframework.zip",
-            checksum: "830f1626de437ab82ca54c919babe34da7c9245cc676b7ebbba00737654fd86e"
-        ),
-        .binaryTarget(
-            name: "Libswresample-GPL",
-            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libswresample-GPL.xcframework.zip",
-            checksum: "4d7c86394f1ac5ff91418f39934be66611ad09d58cc79a758e699c359b30e4e5"
-        ),
-        .binaryTarget(
-            name: "Libswscale-GPL",
-            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libswscale-GPL.xcframework.zip",
-            checksum: "cfcfe9d08a7cbdafd7b8c5457477ce0a87bce288da079b42a1996405ccc54cc0"
-        ),
         //AUTO_GENERATE_TARGETS_BEGIN//
 
         .binaryTarget(
@@ -159,12 +79,6 @@ let package = Package(
             name: "Libass",
             url: "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libass.xcframework.zip",
             checksum: "1e41f5a69c74f6c6407aab84a65ccd0b34e73fa44465f488f99bf22bd61b070d"
-        ),
-
-        .binaryTarget(
-            name: "Libsmbclient",
-            url: "https://github.com/mpvkit/libsmbclient-build/releases/download/4.15.13-2512/Libsmbclient.xcframework.zip",
-            checksum: "3a53375fab11bc888cc553664ea5dd902208d04f0cc21ec746302bf356246b6f"
         ),
 
         .binaryTarget(

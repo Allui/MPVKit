@@ -24,22 +24,12 @@ Metal support only a patch version ([#7857](https://github.com/mpv-player/mpv/pu
 https://github.com/mpvkit/MPVKit.git
 ```
 
-### Choose which version
-
-| Version | License | Note |
-|---|---|---|
-| MPVKit | LGPL | [FFmpeg details](https://github.com/FFmpeg/FFmpeg/blob/master/LICENSE.md) , [mpv details](https://github.com/mpv-player/mpv/blob/master/Copyright) |
-| MPVKit-GPL | GPL | Support samba protocol, same as old MPVKit version |
-
-
 ## How to build
 
 ```bash
 make build
 # specified platforms (ios,macos,tvos,tvsimulator,isimulator,maccatalyst)
 make build platform=ios,macos
-# build GPL version
-make build enable-gpl
 # clean all build temp files and cache
 make clean
 # see help
@@ -52,39 +42,43 @@ If you want the demo app to use the local build version, you need to modify `Pac
 
 <details>
 <summary>Click here for more information.</summary>
-  
+
 ```
 .binaryTarget(
-    name: "Libmpv-GPL",
+    name: "Libmpv",
     path: "dist/release/Libmpv.xcframework.zip"
 ),
 .binaryTarget(
-    name: "Libavcodec-GPL",
+    name: "Libavcodec",
     path: "dist/release/Libavcodec.xcframework.zip"
 ),
 .binaryTarget(
-    name: "Libavdevice-GPL",
+    name: "Libavdevice",
     path: "dist/release/Libavdevice.xcframework.zip"
 ),
 .binaryTarget(
-    name: "Libavformat-GPL",
+    name: "Libavformat",
     path: "dist/release/Libavformat.xcframework.zip"
 ),
 .binaryTarget(
-    name: "Libavfilter-GPL",
+    name: "Libavfilter",
     path: "dist/release/Libavfilter.xcframework.zip"
 ),
 .binaryTarget(
-    name: "Libavutil-GPL",
+    name: "Libavutil",
     path: "dist/release/Libavutil.xcframework.zip"
 ),
 .binaryTarget(
-    name: "Libswresample-GPL",
+    name: "Libswresample",
     path: "dist/release/Libswresample.xcframework.zip"
 ),
 .binaryTarget(
-    name: "Libswscale-GPL",
+    name: "Libswscale",
     path: "dist/release/Libswscale.xcframework.zip"
+),
+.binaryTarget(
+    name: "Libplacebo",
+    path: "dist/release/Libplacebo.xcframework.zip"
 ),
 ```
 
@@ -104,7 +98,6 @@ If you want the demo app to use the local build version, you need to modify `Pac
 * [libplacebo-build](https://github.com/mpvkit/libplacebo-build)
 * [libdovi-build](https://github.com/mpvkit/libdovi-build)
 * [libass-build](https://github.com/mpvkit/libass-build)
-* [libsmbclient-build](https://github.com/mpvkit/libsmbclient-build)
 
 ## Donation
 
@@ -114,6 +107,4 @@ If you appreciate my current work, you can buy me a cup of coffee ☕️.
 
 ## License
 
-`MPVKit` source alone is licensed under the LGPL v3.0.
-
-`MPVKit` bundles (`frameworks`, `xcframeworks`), which include both `libmpv` and `FFmpeg` libraries, are also licensed under the LGPL v3.0. However, if the source code is built using the optional `enable-gpl` flag or prebuilt binaries with `-GPL` postfix are used, then `MPVKit` bundles become subject to the GPL v3.0.
+`MPVKit` source and bundles (`frameworks`, `xcframeworks`) — which include `libmpv`, `FFmpeg`, and `libplacebo` — are licensed under the LGPL v3.0.
