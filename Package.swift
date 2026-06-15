@@ -53,98 +53,98 @@ let package = Package(
 
         .binaryTarget(
             name: "Libunibreak",
-            url: "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libunibreak.xcframework.zip",
-            checksum: "001087c0e927ae00f604422b539898b81eb77230ea7700597b70393cd51e946c"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libunibreak.xcframework.zip",
+            checksum: "ca57a6f8e6870dd17896aef7d3b27e8e7df5b731e4fffe314fbb4c89293280ff"
         ),
 
         .binaryTarget(
             name: "Libfreetype",
-            url: "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libfreetype.xcframework.zip",
-            checksum: "f2840aba1ce35e51c0595557eee82c908dac8e32108ecc0661301c06061e051c"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libfreetype.xcframework.zip",
+            checksum: "40dc859ed271f05840963ba4a390dd5708c4474e83f37d199a74ae70e2e5363b"
         ),
 
         .binaryTarget(
             name: "Libfribidi",
-            url: "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libfribidi.xcframework.zip",
-            checksum: "4a55513792ef7a17893875f74cc84c56f3657e8768c07a7a96f563a11dc4b743"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libfribidi.xcframework.zip",
+            checksum: "026f6690fa4876370db4f3a563d0197f4f30e347cdf47a9a4db6bfa31438f294"
         ),
 
         .binaryTarget(
             name: "Libharfbuzz",
-            url: "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libharfbuzz.xcframework.zip",
-            checksum: "91558d8497d9d97bc11eeef8b744d104315893bfee8f17483d8002e14565f84b"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libharfbuzz.xcframework.zip",
+            checksum: "a983b069883cbea0f92205485a6acc403f739147a76c7862798ec6c489653c0a"
         ),
 
         .binaryTarget(
             name: "Libass",
-            url: "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libass.xcframework.zip",
-            checksum: "1e41f5a69c74f6c6407aab84a65ccd0b34e73fa44465f488f99bf22bd61b070d"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libass.xcframework.zip",
+            checksum: "da685f470be380e08dbfdd43449806b9d31f8cd5f86aac1db59863eae4547afc"
         ),
 
         .binaryTarget(
             name: "Libdovi",
-            url: "https://github.com/mpvkit/libdovi-build/releases/download/3.3.2/Libdovi.xcframework.zip",
-            checksum: "e693e239808350868e79c5448ef9f02e2716bc822dd8632a41a368a1eae5ca7d"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libdovi.xcframework.zip",
+            checksum: "23d0e7b865a30e9341cd36923367a88d57f7ea5d7ea81a54ea809322cbf195e1"
         ),
 
         .binaryTarget(
             name: "Libplacebo",
-            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.360.1/Libplacebo.xcframework.zip",
-            checksum: "2fa3d54cb81f302d6f11c7b2f509af30944381c3b11ee9d35096eb4637a6e2dd"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libplacebo.xcframework.zip",
+            checksum: "60b9383f9140a83c27ccedd29ae265a370e87a7279b13ac71effed56d8f3b0a2"
         ),
 
         .binaryTarget(
             name: "Libdav1d",
-            url: "https://github.com/mpvkit/libdav1d-build/releases/download/1.5.2-xcode/Libdav1d.xcframework.zip",
-            checksum: "8a8b78e23e28ecc213232805f3c1936141fc9befe113e87234f4f897f430a532"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libdav1d.xcframework.zip",
+            checksum: "9e72a730b900f7b5c5a01f187384988edcadbeb5f45efe31f07dc1fc23217996"
         ),
 
         .binaryTarget(
             name: "Libavcodec",
             url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavcodec.xcframework.zip",
-            checksum: "fda8527d4946270813ea39de2dca1230c5cd28fd8a46f64ac881bec9241d78f9"
+            checksum: "ad281d5f999dce4d8f6661ef291fe5e3a13c50c29169277012babb1fc36b38ad"
         ),
         .binaryTarget(
             name: "Libavdevice",
             url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavdevice.xcframework.zip",
-            checksum: "39341b1d2571ea8b36171b7d98c03bc60e7d00efd89add11b4c3fd57b9e445bf"
+            checksum: "93b4cdff47d67cdc79fed8834ab0b55483f53c588ca2d4ae0c82283aeb6c0d4a"
         ),
         .binaryTarget(
             name: "Libavformat",
             url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavformat.xcframework.zip",
-            checksum: "d1c0421dab44616651ffe6647ee3bd6e9c3421cd26b91197b0f710773e019ed3"
+            checksum: "8d2591697ec6f4f4368504834420ebfc2cd560cec866183567091fa1c801ffbc"
         ),
         .binaryTarget(
             name: "Libavfilter",
             url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavfilter.xcframework.zip",
-            checksum: "e3912d2219fe3206119e2e268d2a0f49a17cb6c308e257dcb73dcec903c00ee9"
+            checksum: "dc94bb04d9c76196a5995dcbff6255a4dcec889db20c02a2267bdfb83ab8daa3"
         ),
         .binaryTarget(
             name: "Libavutil",
             url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libavutil.xcframework.zip",
-            checksum: "195c9f8121549f65ea0a5abe27357db8f616039fa2d1512318b9c942b479c4d0"
+            checksum: "4468f0bb53e130bd8e094e81fb7332dd69460eeecca885c227361a53db245014"
         ),
         .binaryTarget(
             name: "Libswresample",
             url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libswresample.xcframework.zip",
-            checksum: "53a8dd5dac278d2c21d84bec051ad4779962bae0308f1700d24b2004c3e9ea6c"
+            checksum: "9a730d916ea59eb635a17076cda7db2ca133cc004025a7331bf0246b6c6cd19f"
         ),
         .binaryTarget(
             name: "Libswscale",
             url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libswscale.xcframework.zip",
-            checksum: "9c6195a0ec7de1856d64a8f922a05770c9e5aacc3f40cd06e4fdc042dc02c71b"
+            checksum: "faa4b61a9e4f1a109e37adbf79aa17af0ca6625f3397bc282600fdd46bc34b8f"
         ),
 
         .binaryTarget(
             name: "Libuchardet",
-            url: "https://github.com/mpvkit/libuchardet-build/releases/download/0.0.8-xcode/Libuchardet.xcframework.zip",
-            checksum: "503202caa0dafb6996b2443f53408a713b49f6c2d4a26d7856fd6143513a50d7"
+            url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libuchardet.xcframework.zip",
+            checksum: "2c144c92a35b82ffb3e9cd866cb1ae3045ca522d0d2f753d7e5a8808c6a03bc9"
         ),
 
         .binaryTarget(
             name: "Libmpv",
             url: "https://github.com/Allui/MPVKit/releases/download/0.41.0/Libmpv.xcframework.zip",
-            checksum: "bb27a73b53d623a0505f6bc5f02a00174555e08e21c96e089cef2951aef8bb66"
+            checksum: "979345bfa776d393255d999abb9e75647f51cbf1165747e9cd3e4f0c6ecacda3"
         ),
         //AUTO_GENERATE_TARGETS_END//
     ]
